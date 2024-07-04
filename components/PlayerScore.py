@@ -11,7 +11,7 @@ class PlayerScore:
         score_text = str(self.score)
         score_rect = GameFont.get_rect(score_text)
         score_rect.x = x
-        score_rect.y = y - 20
+        score_rect.y = y - 30
         GameFont.render_to(GameWindow, score_rect, score_text, COLOR_WHITE)
 
     def add_score(self, operand, value):

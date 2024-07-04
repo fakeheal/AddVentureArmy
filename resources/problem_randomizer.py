@@ -1,7 +1,5 @@
 import random
 
-import math
-
 
 def randomize():
     operands = ['+', '-', '*', '/', 'sqrt']

@@ -14,6 +14,7 @@ sprite_sheet_1 = SpriteSheet(sprite_sheet_image_1)
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
+        self.can_hit_bonus = True
         self.frame = 0
         self.interval = 100
         self.next_tick = pygame.time.get_ticks() + self.interval
@@ -55,7 +56,7 @@ class Player(pygame.sprite.Sprite):
         else:
             self.image = sprite_sheet_0.get_image(self.frame, PLAYER_WIDTH, PLAYER_HEIGHT, PLAYER_SCALE)
         GameWindow.blit(self.image, self.rect)
-        self.player_score.draw(self.rect.x, self.rect.y)
+        self.player_score.draw(self.rect.centerx, self.rect.y)
 
     def __str__(self):
         return f"Player: {self.rect.x}, {self.rect.y}"

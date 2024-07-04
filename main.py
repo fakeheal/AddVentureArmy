@@ -29,10 +29,11 @@ while True:
             pygame.quit()
             sys.exit()
         elif event.type == BONUS_HIT:
-            if event.bonus.alive():
+            if event.bonus.alive() and P1.can_hit_bonus:
                 P1.player_score.add_score(event.bonus.problem.operand, event.bonus.problem.value)
                 event.bonus.kill()
         elif event.type == BONUS_SPAWN:
+            P1.can_hit_bonus = True
             operand1, value1, operand2, value2 = get_bonus_problems(P1.player_score.score)
             B1 = Bonus(BONUS_POSITION_LEFT, operand1, value1)
             B2 = Bonus(BONUS_POSITION_RIGHT, operand2, value2)
@@ -54,9 +55,6 @@ while True:
     bonus_hit = pygame.sprite.spritecollideany(P1, bonuses)
     if bonus_hit:
         pygame.event.post(pygame.event.Event(BONUS_HIT, {"bonus": bonus_hit}))
-        for bonus in bonuses:
-            if bonus != bonus_hit:
-                bonus.kill()
 
     if P1.player_score.score <= 0:
         pygame.event.post(pygame.event.Event(QUIT))

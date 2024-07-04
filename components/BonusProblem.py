@@ -1,13 +1,14 @@
 from AddVentureArmy import GameFont, GameWindow
 from resources.colors import COLOR_WHITE
 
+
 class BonusProblem:
     def __init__(self, operand, value):
         self.operand = operand
         self.value = value
 
-    def draw(self, center):
+    def draw(self, x, y):
         problem_text = f"{self.operand} {self.value if self.value is not None else ''}"
         problem_rect = GameFont.get_rect(problem_text)
-        problem_rect.center = center
+        problem_rect.center = (x, y - 30)
         GameFont.render_to(GameWindow, problem_rect, problem_text, COLOR_WHITE, )
