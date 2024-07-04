@@ -2,7 +2,7 @@ from AddVentureArmy import GameFont, GameWindow
 from resources.colors import COLOR_WHITE
 
 
-class EnemyProblem:
+class BonusProblem:
     def __init__(self, operand, value):
         self.operand = operand
         self.value = value

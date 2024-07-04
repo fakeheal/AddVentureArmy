@@ -8,7 +8,7 @@ from resources.colors import COLOR_BLUE, COLOR_WHITE
 
 class Player(pygame.sprite.Sprite):
     def __init__(self):
-        super().__init__()
+        pygame.sprite.Sprite.__init__(self)
         self.rect = pygame.Rect(0, 0, PLAYER_WIDTH, PLAYER_HEIGHT)
         self.rect.center = (GAME_WINDOW_WIDTH / 2 - PLAYER_WIDTH / 2, GAME_WINDOW_HEIGHT - PLAYER_HEIGHT / 2)
         self.player_score = PlayerScore()
@@ -33,3 +33,6 @@ class Player(pygame.sprite.Sprite):
     def draw(self):
         pygame.draw.rect(GameWindow, COLOR_BLUE, self.rect)
         self.player_score.draw(self.rect.center)
+
+    def __str__(self):
+        return f"Player: {self.rect.x}, {self.rect.y}"
