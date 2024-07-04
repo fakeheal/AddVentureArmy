@@ -8,8 +8,8 @@ from components.Bonus import Bonus
 from components.Player import Player
 from constants import GAME_FPS, BONUS_POSITION_LEFT, BONUS_POSITION_RIGHT
 from resources.colors import COLOR_WHITE
+from resources.math import get_bonus_problems
 
-# Creating Sprites Groups
 bonuses = pygame.sprite.Group()
 all_sprites = pygame.sprite.Group()
 
@@ -30,8 +30,9 @@ while True:
                 event.bonus.kill()
         elif event.type == BONUS_SPAWN:
             P1.player_score.can_absorb = True
-            B1 = Bonus(BONUS_POSITION_LEFT)
-            B2 = Bonus(BONUS_POSITION_RIGHT)
+            operand1, value1, operand2, value2 = get_bonus_problems(P1.player_score.score)
+            B1 = Bonus(BONUS_POSITION_LEFT, operand1, value1)
+            B2 = Bonus(BONUS_POSITION_RIGHT, operand2, value2)
             bonuses.add(B1, B2)
             all_sprites.add(B1, B2)
 

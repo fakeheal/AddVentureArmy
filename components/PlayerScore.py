@@ -1,5 +1,6 @@
 from AddVentureArmy import GameFont, GameWindow
 from resources.colors import COLOR_WHITE
+from resources.math import apply_operation
 
 
 class PlayerScore:
@@ -14,13 +15,5 @@ class PlayerScore:
         GameFont.render_to(GameWindow, score_rect, score_text, COLOR_WHITE)
 
     def add_score(self, operand, value):
-        if not self.can_absorb:
-            return
-        if operand == "+":
-            self.score += value
-        elif operand == "-":
-            self.score -= value
-        elif operand == "*":
-            self.score *= value
-        elif operand == "/":
-            self.score /= value
+        if self.can_absorb:
+            self.score = apply_operation(self.score, operand, value)

@@ -8,21 +8,20 @@ from resources.colors import COLOR_RED
 
 
 class Bonus(pygame.sprite.Sprite):
-    def __init__(self, position):
+    def __init__(self, position, operand, value):
         pygame.sprite.Sprite.__init__(self)
         self.rect = pygame.Rect(0, 0, BONUS_WIDTH, BONUS_HEIGHT)
+        self.problem = BonusProblem(operand, value)
+
+        center_x = GAME_WINDOW_WIDTH / 2
+        center_y = BONUS_HEIGHT / 2
+
         if position == BONUS_POSITION_LEFT:
-            self.problem = BonusProblem("-", 1)
-            self.rect.center = (
-                GAME_WINDOW_WIDTH / 2 - BONUS_WIDTH / 2 - BONUS_OFFSET,
-                BONUS_HEIGHT / 2
-            )
+            center_x = GAME_WINDOW_WIDTH / 2 - BONUS_WIDTH / 2 - BONUS_OFFSET
         elif position == BONUS_POSITION_RIGHT:
-            self.problem = BonusProblem("+", 1)
-            self.rect.center = (
-                GAME_WINDOW_WIDTH / 2 + BONUS_WIDTH / 2 + BONUS_OFFSET,
-                BONUS_HEIGHT / 2
-            )
+            center_x = GAME_WINDOW_WIDTH / 2 + BONUS_WIDTH / 2 + BONUS_OFFSET
+
+        self.rect.center = (center_x, center_y)
 
     def update(self):
         self.rect.y += 1 * BONUS_SPEED

@@ -1,9 +1,9 @@
 import pygame.sprite
 
-from AddVentureArmy import GameWindow, GameFont
+from AddVentureArmy import GameWindow
 from components.PlayerScore import PlayerScore
 from constants import PLAYER_WIDTH, PLAYER_HEIGHT, PLAYER_SPEED, GAME_WINDOW_WIDTH, GAME_WINDOW_HEIGHT
-from resources.colors import COLOR_BLUE, COLOR_WHITE
+from resources.colors import COLOR_BLUE
 
 
 class Player(pygame.sprite.Sprite):
