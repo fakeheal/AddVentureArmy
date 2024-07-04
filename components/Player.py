@@ -1,7 +1,9 @@
 import pygame.sprite
 
+from AddVentureArmy import GameWindow, GameFont
+from components.PlayerScore import PlayerScore
 from constants import PLAYER_WIDTH, PLAYER_HEIGHT, PLAYER_SPEED, GAME_WINDOW_WIDTH, GAME_WINDOW_HEIGHT
-from resources.colors import COLOR_BLUE
+from resources.colors import COLOR_BLUE, COLOR_WHITE
 
 
 class Player(pygame.sprite.Sprite):
@@ -9,6 +11,7 @@ class Player(pygame.sprite.Sprite):
         super().__init__()
         self.rect = pygame.Rect(0, 0, PLAYER_WIDTH, PLAYER_HEIGHT)
         self.rect.center = (GAME_WINDOW_WIDTH / 2 - PLAYER_WIDTH / 2, GAME_WINDOW_HEIGHT - PLAYER_HEIGHT / 2)
+        self.player_score = PlayerScore()
 
     def update(self):
         pressed_keys = pygame.key.get_pressed()
@@ -27,5 +30,6 @@ class Player(pygame.sprite.Sprite):
 
         self.rect.x = next_x
 
-    def draw(self, surface):
-        pygame.draw.rect(surface, COLOR_BLUE, self.rect)
+    def draw(self):
+        pygame.draw.rect(GameWindow, COLOR_BLUE, self.rect)
+        self.player_score.draw(self)
