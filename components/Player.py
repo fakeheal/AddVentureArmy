@@ -32,4 +32,4 @@ class Player(pygame.sprite.Sprite):
 
     def draw(self):
         pygame.draw.rect(GameWindow, COLOR_BLUE, self.rect)
-        self.player_score.draw(self)
+        self.player_score.draw(self.rect.center)
