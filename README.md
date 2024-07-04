@@ -2,7 +2,7 @@
 
 Проект за курс CITB331 Програмиране с Python в НБУ.
 
-![AddVenture Army](demo.gif)
+![AddVenture Army](./demo.png)
 
 ## Credits
 
