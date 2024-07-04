@@ -1,13 +1,13 @@
-import math
 import sys
 
 import pygame.freetype
 from pygame.locals import *
 
-from AddVentureArmy import GameWindow, FramePerSec, BONUS_HIT, BONUS_SPAWN
+from AddVentureArmy import FramePerSec, BONUS_HIT, BONUS_SPAWN
+from components.Background import Background
 from components.Bonus import Bonus
 from components.Player import Player
-from constants import GAME_FPS, BONUS_POSITION_LEFT, BONUS_POSITION_RIGHT, BONUS_SPEED
+from constants import GAME_FPS, BONUS_POSITION_LEFT, BONUS_POSITION_RIGHT
 from resources.problem_randomizer import get_bonus_problems
 
 bonuses = pygame.sprite.Group()
@@ -16,10 +16,7 @@ all_sprites = pygame.sprite.Group()
 P1 = Player()
 all_sprites.add(P1)
 
-background = pygame.image.load("resources/images/background_0.png").convert()
-bg_height = background.get_height()
-bg_tiles = math.ceil(GameWindow.get_height() / bg_height) + 1
-bg_scroll = GameWindow.get_height() - bg_height
+BG = Background()
 
 pygame.time.set_timer(BONUS_SPAWN, 5000)
 
@@ -40,13 +37,8 @@ while True:
             bonuses.add(B1, B2)
             all_sprites.add(B1, B2)
 
-    for i in reversed(range(bg_tiles - 1, -1, -1)):
-        GameWindow.blit(background, (0, -i * bg_height + bg_scroll))
-
-    bg_scroll += BONUS_SPEED
-
-    if bg_scroll >= GameWindow.get_height():
-        bg_scroll = GameWindow.get_height() - bg_height
+    BG.update()
+    BG.draw()
 
     for sprite in all_sprites:
         sprite.update(pygame.time.get_ticks())
