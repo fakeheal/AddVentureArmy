@@ -9,16 +9,14 @@ from components.Player import Player
 from constants import GAME_FPS, BONUS_POSITION_LEFT, BONUS_POSITION_RIGHT
 from resources.colors import COLOR_WHITE
 
-P1 = Player()
-B1 = Bonus(BONUS_POSITION_LEFT)
-B2 = Bonus(BONUS_POSITION_RIGHT)
-
 # Creating Sprites Groups
 bonuses = pygame.sprite.Group()
-bonuses.add(B1, B2)
-
 all_sprites = pygame.sprite.Group()
-all_sprites.add(P1, B1, B2)
+
+P1 = Player()
+all_sprites.add(P1)
+
+pygame.time.set_timer(BONUS_SPAWN, 5000)
 
 while True:
     for event in pygame.event.get():
@@ -32,6 +30,10 @@ while True:
                 event.bonus.kill()
         elif event.type == BONUS_SPAWN:
             P1.player_score.can_absorb = True
+            B1 = Bonus(BONUS_POSITION_LEFT)
+            B2 = Bonus(BONUS_POSITION_RIGHT)
+            bonuses.add(B1, B2)
+            all_sprites.add(B1, B2)
 
     GameWindow.fill(COLOR_WHITE)
 
@@ -39,7 +41,7 @@ while True:
         sprite.update()
         sprite.draw()
 
-    bonus_hit = pygame.sprite.spritecollideany(P1, [B1, B2])
+    bonus_hit = pygame.sprite.spritecollideany(P1, bonuses)
     if bonus_hit:
         pygame.event.post(pygame.event.Event(BONUS_HIT, {"bonus": bonus_hit}))
 

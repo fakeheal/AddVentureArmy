@@ -5,7 +5,7 @@ from resources.colors import COLOR_WHITE
 class PlayerScore:
     def __init__(self):
         self.score = 1
-        self.can_absorb = True
+        self.can_absorb = False
 
     def draw(self, center):
         score_text = str(self.score)
