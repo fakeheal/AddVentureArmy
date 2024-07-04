@@ -13,8 +13,8 @@ from resources.problem_randomizer import get_bonus_problems
 bonuses = pygame.sprite.Group()
 all_sprites = pygame.sprite.Group()
 
-P1 = Player()
-all_sprites.add(P1)
+P = Player()
+all_sprites.add(P)
 
 BG = Background()
 
@@ -26,12 +26,13 @@ while True:
             pygame.quit()
             sys.exit()
         elif event.type == BONUS_HIT:
-            if event.bonus.alive() and P1.can_hit_bonus:
-                P1.player_score.add_score(event.bonus.problem.operand, event.bonus.problem.value)
+            if event.bonus.alive() and P.can_hit_bonus:
+                P.player_score.add_score(event.bonus.problem.operand, event.bonus.problem.value)
+                P.can_hit_bonus = False
                 event.bonus.kill()
         elif event.type == BONUS_SPAWN:
-            P1.can_hit_bonus = True
-            operand1, value1, operand2, value2 = get_bonus_problems(P1.player_score.score)
+            P.can_hit_bonus = True
+            operand1, value1, operand2, value2 = get_bonus_problems(P.player_score.score)
             B1 = Bonus(BONUS_POSITION_LEFT, operand1, value1)
             B2 = Bonus(BONUS_POSITION_RIGHT, operand2, value2)
             bonuses.add(B1, B2)
@@ -44,11 +45,11 @@ while True:
         sprite.update(pygame.time.get_ticks())
         sprite.draw()
 
-    bonus_hit = pygame.sprite.spritecollideany(P1, bonuses)
+    bonus_hit = pygame.sprite.spritecollideany(P, bonuses)
     if bonus_hit:
         pygame.event.post(pygame.event.Event(BONUS_HIT, {"bonus": bonus_hit}))
 
-    if P1.player_score.score <= 0:
+    if P.player_score.score <= 0:
         pygame.event.post(pygame.event.Event(QUIT))
 
     pygame.display.update()
