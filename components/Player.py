@@ -12,6 +12,7 @@ class Player(pygame.sprite.Sprite):
         self.rect = pygame.Rect(0, 0, PLAYER_WIDTH, PLAYER_HEIGHT)
         self.rect.center = (GAME_WINDOW_WIDTH / 2 - PLAYER_WIDTH / 2, GAME_WINDOW_HEIGHT - PLAYER_HEIGHT / 2)
         self.player_score = PlayerScore()
+        self.can_absorb = True
 
     def update(self):
         pressed_keys = pygame.key.get_pressed()

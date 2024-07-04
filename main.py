@@ -24,12 +24,12 @@ while True:
             pygame.quit()
             sys.exit()
         elif event.type == BONUS_HIT:
-            if event.bonus.alive():
+            if event.bonus.alive() and P1.can_absorb:
                 P1.player_score.add_score(event.bonus.problem.operand, event.bonus.problem.value)
-                P1.player_score.can_absorb = False
+                P1.can_absorb = False
                 event.bonus.kill()
         elif event.type == BONUS_SPAWN:
-            P1.player_score.can_absorb = True
+            P1.can_absorb = True
             operand1, value1, operand2, value2 = get_bonus_problems(P1.player_score.score)
             B1 = Bonus(BONUS_POSITION_LEFT, operand1, value1)
             B2 = Bonus(BONUS_POSITION_RIGHT, operand2, value2)
