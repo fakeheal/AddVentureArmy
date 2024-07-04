@@ -4,9 +4,9 @@ import math
 
 
 def randomize():
-    operands = ['+', '-', '*', '/', '^2', 'sqrt', 'log base 10']
+    operands = ['+', '-', '*', '/', 'sqrt']
     operand = random.choice(operands)
-    if operand in ['^2', 'sqrt', 'log base 10']:
+    if operand in ['sqrt']:
         value = None
     elif operand == '/':
         value = random.randint(1, 10)
@@ -39,11 +39,7 @@ def apply_operation(score, operand, value):
         result *= value
     elif operand == '/':
         result //= value
-    elif operand == '^2':
-        result **= 2
     elif operand == 'sqrt':
         result **= 0.5
-    elif operand == 'log base 10':
-        result = math.log(score, 10)
 
     return int(result)

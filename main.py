@@ -7,8 +7,8 @@ from AddVentureArmy import GameWindow, FramePerSec, BONUS_HIT, BONUS_SPAWN
 from components.Bonus import Bonus
 from components.Player import Player
 from constants import GAME_FPS, BONUS_POSITION_LEFT, BONUS_POSITION_RIGHT
-from resources.colors import COLOR_WHITE
-from resources.math import get_bonus_problems
+from resources.colors import COLOR_WHITE, COLOR_SAND
+from resources.problem_randomizer import get_bonus_problems
 
 bonuses = pygame.sprite.Group()
 all_sprites = pygame.sprite.Group()
@@ -36,10 +36,10 @@ while True:
             bonuses.add(B1, B2)
             all_sprites.add(B1, B2)
 
-    GameWindow.fill(COLOR_WHITE)
+    GameWindow.fill(COLOR_SAND)
 
     for sprite in all_sprites:
-        sprite.update()
+        sprite.update(pygame.time.get_ticks())
         sprite.draw()
 
     bonus_hit = pygame.sprite.spritecollideany(P1, bonuses)

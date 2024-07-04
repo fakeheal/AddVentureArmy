@@ -23,11 +23,11 @@ class Bonus(pygame.sprite.Sprite):
 
         self.rect.center = (center_x, center_y)
 
-    def update(self):
+    def update(self, ticks):
         self.rect.y += 1 * BONUS_SPEED
 
     def draw(self):
-        if self.problem is None:
+        if self.alive() is None:
             return self
         pygame.draw.rect(GameWindow, COLOR_RED, self.rect)
         self.problem.draw(self.rect.center)
