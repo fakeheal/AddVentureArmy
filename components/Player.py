@@ -4,10 +4,11 @@ from AddVentureArmy import GameWindow
 from components.PlayerScore import PlayerScore
 from constants import PLAYER_WIDTH, PLAYER_HEIGHT, PLAYER_SPEED, GAME_WINDOW_WIDTH, GAME_WINDOW_HEIGHT, PLAYER_SCALE
 from resources.SpriteSheet import SpriteSheet
-from resources.colors import COLOR_BLUE
 
-sprite_sheet_image = pygame.image.load("resources/spritesheets/player.png").convert()
-sprite_sheet = SpriteSheet(sprite_sheet_image)
+sprite_sheet_image_0 = pygame.image.load("resources/spritesheets/player_0.png").convert()
+sprite_sheet_image_1 = pygame.image.load("resources/spritesheets/player_1.png").convert()
+sprite_sheet_0 = SpriteSheet(sprite_sheet_image_0)
+sprite_sheet_1 = SpriteSheet(sprite_sheet_image_1)
 
 
 class Player(pygame.sprite.Sprite):
@@ -17,13 +18,14 @@ class Player(pygame.sprite.Sprite):
         self.interval = 100
         self.next_tick = pygame.time.get_ticks() + self.interval
 
-        self.image = sprite_sheet.get_image(self.frame, PLAYER_WIDTH, PLAYER_HEIGHT, PLAYER_SCALE)
+        self.image = sprite_sheet_0.get_image(self.frame, PLAYER_WIDTH, PLAYER_HEIGHT, PLAYER_SCALE)
         self.rect = self.image.get_rect()
 
         self.rect.center = (
             GAME_WINDOW_WIDTH / 2 - PLAYER_WIDTH / 2 * PLAYER_SCALE,
             GAME_WINDOW_HEIGHT - PLAYER_HEIGHT / 2 * PLAYER_SCALE
         )
+
         self.player_score = PlayerScore()
         self.can_absorb = True
 
@@ -49,7 +51,10 @@ class Player(pygame.sprite.Sprite):
         self.rect.x = next_x
 
     def draw(self):
-        self.image = sprite_sheet.get_image(self.frame, PLAYER_WIDTH, PLAYER_HEIGHT, PLAYER_SCALE)
+        if self.player_score.score >= 100:
+            self.image = sprite_sheet_1.get_image(self.frame, PLAYER_WIDTH * 2, PLAYER_HEIGHT, PLAYER_SCALE)
+        else:
+            self.image = sprite_sheet_0.get_image(self.frame, PLAYER_WIDTH, PLAYER_HEIGHT, PLAYER_SCALE)
         GameWindow.blit(self.image, self.rect)
         self.player_score.draw(self.rect.x, self.rect.y)
 

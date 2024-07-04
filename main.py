@@ -7,7 +7,7 @@ from AddVentureArmy import GameWindow, FramePerSec, BONUS_HIT, BONUS_SPAWN
 from components.Bonus import Bonus
 from components.Player import Player
 from constants import GAME_FPS, BONUS_POSITION_LEFT, BONUS_POSITION_RIGHT
-from resources.colors import COLOR_WHITE, COLOR_SAND
+from resources.colors import COLOR_SAND
 from resources.problem_randomizer import get_bonus_problems
 
 bonuses = pygame.sprite.Group()
@@ -45,6 +45,9 @@ while True:
     bonus_hit = pygame.sprite.spritecollideany(P1, bonuses)
     if bonus_hit:
         pygame.event.post(pygame.event.Event(BONUS_HIT, {"bonus": bonus_hit}))
+
+    if P1.player_score.score <= 0:
+        pygame.event.post(pygame.event.Event(QUIT))
 
     pygame.display.update()
     FramePerSec.tick(GAME_FPS)
