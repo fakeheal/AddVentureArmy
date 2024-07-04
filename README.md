@@ -1,5 +1,9 @@
 # AddVenture Army
 
+Проект за курс CITB331 Програмиране с Python в НБУ.
+
+![AddVenture Army](demo.gif)
+
 ## Credits
 
 - [Font: Monogram](https://datagoblin.itch.io/monogram)
