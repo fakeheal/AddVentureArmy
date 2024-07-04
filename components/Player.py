@@ -2,7 +2,8 @@ import pygame.sprite
 
 from AddVentureArmy import GameWindow
 from components.PlayerScore import PlayerScore
-from constants import PLAYER_WIDTH, PLAYER_HEIGHT, PLAYER_SPEED, GAME_WINDOW_WIDTH, GAME_WINDOW_HEIGHT, PLAYER_SCALE
+from constants import PLAYER_WIDTH, PLAYER_HEIGHT, PLAYER_SPEED, GAME_WINDOW_WIDTH, GAME_WINDOW_HEIGHT, PLAYER_SCALE, \
+    MAP_EDGES
 from resources.SpriteSheet import SpriteSheet
 
 sprite_sheet_image_0 = pygame.image.load("resources/images/player_0.png").convert()
@@ -43,10 +44,10 @@ class Player(pygame.sprite.Sprite):
         if pressed_keys[pygame.K_RIGHT]:
             next_x += PLAYER_SPEED
 
-        if next_x < 0:
-            next_x = 0
-        elif next_x > GAME_WINDOW_WIDTH - PLAYER_WIDTH:
-            next_x = GAME_WINDOW_WIDTH - PLAYER_WIDTH
+        if next_x < MAP_EDGES:
+            next_x = MAP_EDGES
+        elif next_x > GAME_WINDOW_WIDTH - PLAYER_WIDTH - MAP_EDGES:
+            next_x = GAME_WINDOW_WIDTH - PLAYER_WIDTH - MAP_EDGES
 
         self.rect.x = next_x
 
