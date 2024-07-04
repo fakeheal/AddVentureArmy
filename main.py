@@ -3,7 +3,7 @@ import sys
 import pygame.freetype
 from pygame.locals import *
 
-from AddVentureArmy import GameWindow, FramePerSec, BONUS_HIT
+from AddVentureArmy import GameWindow, FramePerSec, BONUS_HIT, BONUS_SPAWN
 from components.Bonus import Bonus
 from components.Player import Player
 from constants import GAME_FPS, BONUS_POSITION_LEFT, BONUS_POSITION_RIGHT
@@ -28,7 +28,10 @@ while True:
         elif event.type == BONUS_HIT:
             if event.bonus.alive():
                 P1.player_score.add_score(event.bonus.problem.operand, event.bonus.problem.value)
+                P1.player_score.can_absorb = False
                 event.bonus.kill()
+        elif event.type == BONUS_SPAWN:
+            P1.player_score.can_absorb = True
 
     GameWindow.fill(COLOR_WHITE)
 

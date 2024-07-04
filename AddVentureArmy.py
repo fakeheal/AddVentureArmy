@@ -17,3 +17,4 @@ FramePerSec = pygame.time.Clock()
 
 # Custom Events
 BONUS_HIT = pygame.USEREVENT + 1
+BONUS_SPAWN = pygame.USEREVENT + 2

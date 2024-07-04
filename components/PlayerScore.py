@@ -4,7 +4,8 @@ from resources.colors import COLOR_WHITE
 
 class PlayerScore:
     def __init__(self):
-        self.score = 0
+        self.score = 1
+        self.can_absorb = True
 
     def draw(self, center):
         score_text = str(self.score)
@@ -13,6 +14,8 @@ class PlayerScore:
         GameFont.render_to(GameWindow, score_rect, score_text, COLOR_WHITE)
 
     def add_score(self, operand, value):
+        if not self.can_absorb:
+            return
         if operand == "+":
             self.score += value
         elif operand == "-":
