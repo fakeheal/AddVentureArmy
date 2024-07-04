@@ -5,8 +5,8 @@ from components.PlayerScore import PlayerScore
 from constants import PLAYER_WIDTH, PLAYER_HEIGHT, PLAYER_SPEED, GAME_WINDOW_WIDTH, GAME_WINDOW_HEIGHT, PLAYER_SCALE
 from resources.SpriteSheet import SpriteSheet
 
-sprite_sheet_image_0 = pygame.image.load("resources/spritesheets/player_0.png").convert()
-sprite_sheet_image_1 = pygame.image.load("resources/spritesheets/player_1.png").convert()
+sprite_sheet_image_0 = pygame.image.load("resources/images/player_0.png").convert()
+sprite_sheet_image_1 = pygame.image.load("resources/images/player_1.png").convert()
 sprite_sheet_0 = SpriteSheet(sprite_sheet_image_0)
 sprite_sheet_1 = SpriteSheet(sprite_sheet_image_1)
 
@@ -27,7 +27,6 @@ class Player(pygame.sprite.Sprite):
         )
 
         self.player_score = PlayerScore()
-        self.can_absorb = True
 
     def update(self, ticks):
         if ticks > self.next_tick:

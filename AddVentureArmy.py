@@ -10,7 +10,7 @@ GameWindow = pygame.display.set_mode((GAME_WINDOW_WIDTH, GAME_WINDOW_HEIGHT))
 pygame.display.set_caption(GAME_TITLE)
 
 # Fonts
-GameFont = pygame.freetype.Font('resources/fonts/monogram.ttf', 24)
+GameFont = pygame.freetype.Font('resources/fonts/monogram.ttf', 42)
 
 # Clock
 FramePerSec = pygame.time.Clock()
